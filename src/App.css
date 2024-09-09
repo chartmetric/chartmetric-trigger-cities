@@ -213,6 +213,7 @@
 
 .cityImage {
   position: relative;
+  background-position: center bottom;
   background-size: cover;
   min-width: 324px;
   height: 149px;
