@@ -21,10 +21,6 @@
   --color-tier-4: rgba(255, 227, 133, 1);
 }
 
-p {
-  color: var(--color-gray-01);
-}
-
 .hidden {
   display: none;
 }
@@ -35,6 +31,8 @@ p {
 
 .base-text {
   margin: 0;
+  color: var(--color-gray-01);
+  letter-spacing: normal;
 }
 
 .topBar {
@@ -333,7 +331,8 @@ p {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 !important
+  margin: 0 !important;
+  font-size: 14px;
 }
 
 .tierPillContainer div {
