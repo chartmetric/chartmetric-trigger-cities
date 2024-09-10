@@ -21,6 +21,10 @@
   --color-tier-4: rgba(255, 227, 133, 1);
 }
 
+p {
+  line-height: 20px;
+}
+
 .hidden {
   display: none;
 }
@@ -285,6 +289,7 @@
   margin: 0;
   font-size: 1.5rem;
   line-height: 0%;
+  font-weight: 700;
 }
 
 .cityInfoTitle p {
