@@ -5,7 +5,9 @@ interface TextProps {
   className?: string;
 }
 
-const P: FC<TextProps> = ({ children, className }) => <p className={`base-text ${className || ''}`}>{children}</p>;
+const P: FC<TextProps> = ({ children, className }) => (
+  <p className={`base-text base-p ${className || ''}`}>{children}</p>
+);
 
 const H1: FC<TextProps> = ({ children, className }) => <h1 className={`base-text ${className || ''}`}>{children}</h1>;
 

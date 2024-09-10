@@ -21,10 +21,6 @@
   --color-tier-4: rgba(255, 227, 133, 1);
 }
 
-p {
-  line-height: 20px;
-}
-
 .hidden {
   display: none;
 }
@@ -37,6 +33,10 @@ p {
   margin: 0;
   color: var(--color-gray-01);
   letter-spacing: normal;
+}
+
+.base-p {
+  line-height: 20px;
 }
 
 .topBar {
