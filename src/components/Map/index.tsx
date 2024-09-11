@@ -185,7 +185,7 @@ const TriggerCityMarker: React.FC<TriggerCityMarkerProps> = ({
   const tierNumber = parseInt(city.TRIGGER_CITY_TIER.slice(-1));
 
   return (
-    <Marker longitude={city.CITY_LNG} latitude={city.CITY_LAT} anchor="bottom" onClick={() => onClick(city)}>
+    <Marker longitude={city.CITY_LNG} latitude={city.CITY_LAT} onClick={() => onClick(city)}>
       <motion.div
         initial={{ opacity: 0, y: -25 }}
         whileInView={{ opacity: 1, y: 0 }}
