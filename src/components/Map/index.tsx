@@ -112,15 +112,12 @@ const TriggerCitiesMap: React.FC<TTriggerCitiesMapProps> = ({ cities }) => {
             />
           ))}
           {!!tooltipCity && (
-            <Popup
-              longitude={tooltipCity.CITY_LNG}
-              latitude={tooltipCity.CITY_LAT}
-              className="cityTooltip"
-              closeButton={false}
-              offset={-38}
-            >
-              {tooltipCity.CITY_NAME}
-            </Popup>
+            <CityTooltip
+              city={tooltipCity}
+              minPopulation={minPopulation}
+              maxPopulation={maxPopulation}
+              mapRef={mapRef}
+            />
           )}
           <NavigationControl position="top-right" showZoom={true} />
         </Map>
@@ -151,6 +148,45 @@ const TriggerCitiesMap: React.FC<TTriggerCitiesMapProps> = ({ cities }) => {
       </div>
       <PopupContent city={popupCity} handleClose={() => setIsPopupOpen(false)} isPopupOpen={isPopupOpen} />
     </>
+  );
+};
+
+interface CityTooltipProps {
+  city: TCity;
+  minPopulation: number;
+  maxPopulation: number;
+  mapRef: React.RefObject<any>;
+}
+
+const CityTooltip: React.FC<CityTooltipProps> = ({ city, minPopulation, maxPopulation, mapRef }) => {
+  const map = mapRef.current;
+  if (!map) return null;
+
+  // Assuming map is your Maplibre instance
+  const markerLatLng = [city.CITY_LNG, city.CITY_LAT];
+  const markerHeight = getMarkerSize(city.CITY_POPULATION, minPopulation, maxPopulation);
+
+  // Convert the marker lat/lng to a pixel position
+  const markerPixel = map.project(markerLatLng);
+
+  // Offset the marker's pixel position by the height of the marker to place the tooltip below
+  const tooltipPixel = [markerPixel.x, markerPixel.y + markerHeight / 2];
+
+  // Convert the new pixel position back to a lat/lng for the tooltip
+  const tooltipLatLng = map.unproject(tooltipPixel);
+
+  console.log(tooltipLatLng);
+
+  return (
+    <Popup
+      longitude={tooltipLatLng.lng}
+      latitude={tooltipLatLng.lat}
+      className="cityTooltip"
+      closeButton={false}
+      anchor="top"
+    >
+      {city.CITY_NAME}
+    </Popup>
   );
 };
 
